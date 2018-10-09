@@ -11,7 +11,7 @@ public class Main {
 		Queue<Integer> queue2 = new SLLQueue();  
 		
 		showArrayQueueTester(queue1);
-		//showSSLQueueTester(queue2); delete this two run the SSLQueueTester
+		//showSSLQueueTester(queue2); delete this to run the SSLQueueTester
 	}
 	
 	
