@@ -1,5 +1,7 @@
 package classes;
 
+import java.util.Iterator;
+
 import interfaces.Queue;
 
 /** 
@@ -7,7 +9,7 @@ A partial implementation of the Queue using a singly linked list with references
 to the first and to the last node.
  **/
 
-public class SLLQueue<E> implements Queue<E> {
+public class SLLQueue<E> implements Queue<E>, Iterable<E> {
 
 	// inner class for nodes in singly linked lists
 	private static class Node<E> {   
@@ -47,8 +49,6 @@ public class SLLQueue<E> implements Queue<E> {
 			return null;        
 		Node<E> nodeWithETR = first;
 		E eTR = nodeWithETR.getElement();
-		if(size == 1) 
-			first = last = null;
 		first = first.getNext();  
 		nodeWithETR.clean();        
 		size --;
@@ -62,5 +62,30 @@ public class SLLQueue<E> implements Queue<E> {
 		last = last.getNext();
 		size++; 
 	}
+	
+	public Iterator<E> iterator() {
+		return new SortedListIterator();
+	}
+
+	private class SortedListIterator implements Iterator<E> {
+		Node<E> current = first;
+
+		public boolean hasNext() { 
+			return current.getNext() != null; 
+		}
+
+		public E next() {
+			if (!hasNext())
+				return null;
+			current = current.getNext();
+			return current.getElement();
+		}
+
+
+		public void remove() {
+			throw new UnsupportedOperationException("Removal logic not implemented."); }
+	}
+	
+
 
 }

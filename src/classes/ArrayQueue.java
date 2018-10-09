@@ -1,5 +1,7 @@
 package classes;
 
+import java.util.Arrays;
+
 import interfaces.Queue;
 
 public class ArrayQueue<E> implements Queue<E> {
@@ -55,12 +57,18 @@ public class ArrayQueue<E> implements Queue<E> {
 
 	private void changeCapacity(int newCapacity) { 
 		// PRE: newCapacity >= size
-		//... finish the implementation of this method ...
+		//... finish the implementation of this method ..
 		E[] newArray = (E[]) new Object[newCapacity];
-		for(int i = 0; i <= this.size-1; i++) {
-			newArray[i] = elements[i];
-			elements[i] = null;
+		for(int i = 0; i <= size() - 1 ; i++) {
+			int avail = (first + i) % elements.length;
+			newArray[i] = elements[avail];
+			elements[avail] = null;
 		}
+		first = 0;
 		elements = newArray;
+	}
+	
+	public String toString() {
+		return "The elements in the queue are: " + Arrays.toString(this.elements);
 	}
 }
