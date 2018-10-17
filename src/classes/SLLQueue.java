@@ -57,9 +57,11 @@ public class SLLQueue<E> implements Queue<E>, Iterable<E> {
 
 	public void enqueue(E e) {
 		if (size == 0) 
-			first = last = new Node<>(e);  
-		last.setNext(new Node<>(e));
-		last = last.getNext();
+			first = last = new Node<>(e);
+		else {
+			last.setNext(new Node<>(e));
+			last = last.getNext();
+		}
 		size++; 
 	}
 	
